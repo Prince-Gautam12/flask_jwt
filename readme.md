@@ -38,29 +38,42 @@ Follow these steps to set up and run the project:
 ## 1. Create and Activate a Virtual Environment
 
 ```bash
-python -m venv venv
-source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-pip install -r requirements.txt
+1. python -m venv venv
+2. source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+3. pip install -r requirements.txt
+4. export FLASK_APP=main.py  # On Windows $env:FLASK_APP = "main.py"
+5. flask shell
+  5.1 db
+  5.2 from models import User
+  5.3 db.create_all()
+6. exit shell ctrl+z
 
+7. python
+  7.1 import secrets
+  7.2 secrets.tokens_hex(12)
 
-FLASK_SECRET_KEY=dghwedkjcbnkurhfwejcnj
+8. create .env file paste these variables
+
+FLASK_SECRET_KEY={random text}
 FLASK_DEBUG=True
 FLASK_SQLALCHEMY_DATABASE_URI=sqlite:///db.sqlite3
 FLASK_SQLALCHEMY_ECHO=True
-FLASK_JWT_SECRET_KEY=e2bcff66d508aa933df986dd
+FLASK_JWT_SECRET_KEY={generated at step 7.2}
 
+9. Exit 
 
-flask db init
-flask db migrate -m "Initial migration"
-flask db upgrade
-
-
-flask run
+10. flask run
 
 ```
 
 
 ## Usage
+  Use postman or any other HTTP request app
+  - First register user with register api
+  - Login with the user with login api
+    - Copy the access token, this we will use as bearer token for rest of the steps.
+  -  /users/all api is allowed for admins only, currently the username prince is considerd as admin.
+
 
 ### API Endpoints
 

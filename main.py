@@ -29,7 +29,7 @@ def create_app():
 
     @jwt.additional_claims_loader
     def make_additional_permissions(identity):
-        if identity == "akshay":
+        if identity == "prince":
             return {"is_admin":True}
         else:
             return {"is_admin": False}
